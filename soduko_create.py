@@ -47,13 +47,7 @@ def create_soduko():
     #fill in the first 3*3 grid
     if not fill_in(soduko):
         print("Failed to fill the Sudoku grid")
-    #solution_soduko = soduko.copy()
-    #delete_numbers(soduko, 20)
-    return soduko#, solution_soduko
+    solution_soduko = soduko.copy()
+    delete_numbers(soduko, 20)
+    return soduko, solution_soduko
 
-
-start = t.perf_counter()
-for _ in range(100):
-    create_soduko()
-end = t.perf_counter()
-print(f"Average duration in seconds:{(end - start)/100:.6f}")
