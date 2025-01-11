@@ -32,11 +32,22 @@ def fill_in_next(soduko):
                         soduko[row, col] = 0
                 return False
     return True
+
+#lösche in random row oder column die zahlen und schreibe eine 0 rein
+def delete_numbers(soduko, num_delete):
+    num_list = list(range(0,9))
+    for i in range(num_delete+1):
+        random_row = random.choice(num_list)
+        random_col = random.choice(num_list)
+        soduko[random_row, random_col] = 0
+    return soduko
+
 def create_soduko():
     soduko = cp.zeros((9, 9), dtype=cp.int32)    
     #fill in the first 3*3 grid
     if not fill_in_next(soduko):
         print("Failed to fill the Sudoku grid")
+    delete_numbers(soduko, 5)
     return soduko
 
 soduko = create_soduko()
