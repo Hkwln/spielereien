@@ -1,6 +1,6 @@
 #create a 9*9 soduko puzzle
 import random
-import numpy as cp
+import numpy as np
 import time as t
 
 def is_valid(soduko, row, col, num):
@@ -43,11 +43,12 @@ def delete_numbers(soduko, num_delete):
     return soduko
 
 def create_soduko():
-    soduko = cp.zeros((9, 9), dtype=cp.int32)  
+    soduko = np.zeros((9, 9), dtype=np.int32)  
     #fill in the first 3*3 grid
     if not fill_in(soduko):
         print("Failed to fill the Sudoku grid")
-    solution_soduko = soduko.copy()
+    #if you want to know a solution of the soduko puzzle
+    #solution_soduko = soduko.copy()
+    #print(solution_soduko)
     delete_numbers(soduko, 20)
-    return soduko, solution_soduko
-
+    return soduko
