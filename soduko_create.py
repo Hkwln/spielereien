@@ -1,7 +1,7 @@
 #create a 9*9 soduko puzzle
 import random
-import cupy as cp
-
+import numpy as cp
+import time as t
 
 def is_valid(soduko, row, col, num):
     #check if the number is not in the current row
@@ -18,7 +18,7 @@ def is_valid(soduko, row, col, num):
             if num == soduko[start_row + i][start_col + j]:
                 return False
     return True
-def fill_in_next(soduko):
+def fill_in(soduko):
     for row in range(9):
         for col in range(9):
             if soduko[row, col] == 0:
@@ -27,7 +27,7 @@ def fill_in_next(soduko):
                 for num in num_list:
                     if is_valid(soduko, row, col, num):
                         soduko[row, col] = num
-                        if fill_in_next(soduko):
+                        if fill_in(soduko):
                             return True
                         soduko[row, col] = 0
                 return False
@@ -43,16 +43,17 @@ def delete_numbers(soduko, num_delete):
     return soduko
 
 def create_soduko():
-    soduko = cp.zeros((9, 9), dtype=cp.int32)    
+    soduko = cp.zeros((9, 9), dtype=cp.int32)  
     #fill in the first 3*3 grid
-    if not fill_in_next(soduko):
+    if not fill_in(soduko):
         print("Failed to fill the Sudoku grid")
-    delete_numbers(soduko, 5)
-    return soduko
+    #solution_soduko = soduko.copy()
+    #delete_numbers(soduko, 20)
+    return soduko#, solution_soduko
 
-soduko = create_soduko()
-print(cp.asnumpy(soduko))
 
-#Checks if the operation is on Gpu
-print("Is the array on GPU?", cp.get_array_module(soduko) is cp)
-print("Current device:", cp.cuda.Device().id)
+start = t.perf_counter()
+for _ in range(100):
+    create_soduko()
+end = t.perf_counter()
+print(f"Average duration in seconds:{(end - start)/100:.6f}")
