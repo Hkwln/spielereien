@@ -1,0 +1,17 @@
+digraph {
+	q0 [label="q0 (start)"]
+	q1 [label="q1 (reading a's)"]
+	q2 [label="q2 (reading b's)"]
+	q3 [label="q3 (reading c's)"]
+	q4 [label="q4 (accept)" shape=doublecircle]
+	q5 [label="q5 (reject)"]
+	q0 -> q1 [label="ε, Z → Z"]
+	q1 -> q1 [label="a, Z → AZ
+a, A → AA"]
+	q1 -> q2 [label="b, A → ε"]
+	q2 -> q2 [label="b, A → ε"]
+	q2 -> q3 [label="ε, Z → Z"]
+	q3 -> q3 [label="c, A → ε"]
+	q3 -> q4 [label="ε, Z → Z"]
+	q3 -> q5 [label="c, Z → Z"]
+}
