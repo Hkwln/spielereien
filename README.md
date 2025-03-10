@@ -6,3 +6,5 @@
 * Here I created with a friend of my a sudoku
 ### [Tutorials](tutorials/description.md)
 * Here I followed some tutorials I found
+### [C coding](C_coding/Info.md)
+* Here I tried to internalise my understanding of the C programming language
