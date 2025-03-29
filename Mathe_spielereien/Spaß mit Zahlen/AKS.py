@@ -18,28 +18,46 @@
 #6. Output PRIME;
 
 import numpy as np
+from sympy import symbols, expand
 from ggt import ggt
 
 def Aks(n):
-    #step 1
-    for b in range(2, np.log2(n)+1):
-        # n = a^b implies a = n^(1/b)
-        a = n ** (1/b)
+    # Step 1
+    for b in range(2, int(np.log2(n)) + 1):  # Fix range to use integers
+        a = round(n ** (1 / b))  # Round to nearest integer
         if a ** b == n:
-            return ('Composite')
-    
-    #step 2
-    nlog = np.log2(n)**2
-    # ord_r is the smallest integer k such that n^k  ≡ 1 (mod r)
-   
-    for r in range(2,n ):
-        #calculate ord_r until ord_r(n) > log²(n)
-        for k in range (1, k):
-            ktemp = n**k== 1 % r
+            return "COMPOSITE"
+
+    # Step 2
+    nlog = (np.log2(n)) ** 2
+    for r in range(2, n):
+        ktemp = 1
+        for k in range(1, r + 1):  # Fix loop range
+            if pow(n, k, r) == 1:  # Modular exponentiation
+                ktemp = k
+                break
         if ktemp > nlog:
-            return ('Composite')
-    
-    #step 3
-    for a in range(1, r+1):
-        if 1< ggt(a,n)< n and a<= r:
-            return('Composite')
+            break  # Exit loop when condition is met
+
+    # Step 3
+    for a in range(1, r + 1):
+        if 1 < ggt(a, n) < n:  # Fix condition
+            return "COMPOSITE"
+
+    # Step 4
+    if n <= r:
+        return "PRIME"
+
+    # Step 5
+    x = symbols('x')
+    for a in range(1, int(np.sqrt(r) * np.log2(n)) + 1):  # Use np.log2 for consistency
+        left = expand((x + a) ** n) % (x ** r - 1) % n  # Add modulo n
+        right = (x ** n + a) % (x ** r - 1) % n  # Add modulo n
+        if left != right:
+            return "COMPOSITE"
+
+    # Step 6: Output PRIME
+    return "PRIME"
+
+# Example usage
+print(Aks(87))
