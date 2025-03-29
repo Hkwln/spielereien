@@ -18,7 +18,7 @@
 #6. Output PRIME;
 
 import numpy as np
-
+from ggt import ggt
 
 def Aks(n):
     #step 1
@@ -30,5 +30,16 @@ def Aks(n):
     
     #step 2
     nlog = np.log2(n)**2
+    # ord_r is the smallest integer k such that n^k  ≡ 1 (mod r)
+   
     for r in range(2,n ):
         #calculate ord_r until ord_r(n) > log²(n)
+        for k in range (1, k):
+            ktemp = n**k== 1 % r
+        if ktemp > nlog:
+            return ('Composite')
+    
+    #step 3
+    for a in range(1, r+1):
+        if 1< ggt(a,n)< n and a<= r:
+            return('Composite')
