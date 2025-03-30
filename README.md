@@ -4,6 +4,8 @@
 * Here I tried to code some math in python, so I don't have to calculate it by hand
 ### Soduko:
 * Here I created with a friend of my a sudoku
+## Password generator:
+* Here I try different approaches to generate a password
 ### [Tutorials](tutorials/description.md)
 * Here I followed some tutorials I found
 ### [C coding](C_coding/Info.md)
