@@ -14,20 +14,25 @@ bool Millerrabin(int number){
         return true;
     }
     if(number % 2 != 0){
-        int *arr = NULL; //create a array which has a dynamic size_t
-        int createList(number){
-            int temp = number-1
-            int size = 0;
-            while (temp %2 == 0){
-                size++;
-                arr = realloc(arr, size * sizeof(int));
-                //arr.append()
-                arr[i] = temp
-                temp = temp/2;
-                
+        int *arr = NULL; // create an array with dynamic size
+        
+        int temp = number - 1;
+        int size = 0;
+        while (temp % 2 == 0) {
+            size++;
+            arr = realloc(arr, size * sizeof(int));
+            if (arr == NULL) {
+                fprintf(stderr, "Memory allocation failed\n");
+                exit(EXIT_FAILURE);
             }
+            arr[size - 1] = temp;
+            temp = temp / 2;
         }
-        createList(number);
+        
+        
+        createList(number, &arr);
+        free(arr);
+        arr = NULL;
         int r = generate_random(1, 100);
 
 
@@ -38,4 +43,7 @@ bool Millerrabin(int number){
     
 }
 
-int main(){}
+int main(){
+    Millerrabin(89);
+    return 0;
+}
