@@ -91,11 +91,14 @@ public class SimpleList<T> implements ISimpleListIterable<T> {
             if (!hasNext()) {
                 throw new NoSuchElementException();
             }
+            
             T data = current.data;
-            for (int i = 1; i < step && current != null; i++) { 
+            
+            // Move current pointer n steps forward (step times or until the end of the list)
+            for (int i = 0; i < step && current != null; i++) {
                 current = current.next;
             }
-            current = current.next; 
+            
             return data;
         }
 
