@@ -46,4 +46,11 @@ int main(){
     printf("Enter a number you want to search for");
     scanf("%d", &target);
     result = binary_search(arr, 0 ,size-1, target);
+    
+    if (result != -1)
+        printf("Number found at position %d\n", result);
+    else
+        printf("Number not found in the array\n");
+        
+    return 0;
 }
