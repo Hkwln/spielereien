@@ -1,10 +1,17 @@
-## Blatt 00
+# Blatt 00
 
-2
+## Aufgabe 1:
+a) Eine Datenstruktur beschreibt di Art und Weise wie Daten in einem Computer Organisiert, abgespeichert werden damit man schnell und effizient darauf zugreifen kann
+b) Ja ein string kann als Datenstruktur betrachtet werden weil er aus einer organisiserten Reihe von Zeichen besteht die im Speicher abgelegt werden, und man effizient auf den gesamten String oder auch einzelne Zeichen zugreifen kann, was der Definition einer Datenstruktur entspricht
+c) Ein Algorithmus ist eine exakte Abfolge von fest vorgegebenen Schritten um ein Problem zu lösen/ ein Ziel zu erreichen
+d) Ja ein Algorithmus mit Pseudocode zu beschreiben kann hilfreich sein, pseudocode ist unabhängig von einer spezifischen Programmiersprache, was ihn für mehr Menschen verständicher macht und die Algorithmuslogik kann präziser dargestellt werden, 
+weil er keine komplexe Syntax nutzt. Wenn es also darum geht die reine Funktionsweise zu erklären kann Pseudocode die bessere Wahl sein
 
-## Rezept für Spaghetti Bolognese
+## Aufgabe 2
 
-### Zutaten:
+### Rezept für Spaghetti Bolognese
+
+#### Zutaten:
 - 200g Spaghetti
 - 100g Hackfleisch
 - 1 Zwiebel
@@ -15,7 +22,7 @@
 - Pfeffer
 - Oregano
 
-### Algorithmus:
+#### Algorithmus:
 Input: Zutaten oben, gut ausgestattete Küche
 Output: Ein Teller Spaghetti Bolognese
 
@@ -45,13 +52,13 @@ Gib Spaghetti auf den Teller;
 Gib die Sauce über die Spaghetti;
 return Teller mit Spaghetti Bolognese
 
-Aufgabe 3:
-a) Verkettete Liste
-sie ist besser geeignet weil die Aufgabenverwaltung dynamisch ist, neue Aufgaben können immer hinzugefügt oder entfernt werden, arrays haben keine dynamische größen, eine verketttete Liste schon. 
+## Aufgabe 3:
+a) Verkettete Liste ist besser geeignet, weil neue Aufgaben häufig hinzugefügt oder erledigt werden müssen. So ein dynamisches Wachstum bietet eine verkettete Liste, weil sie eine dynamische Größe hat.
 Außerdem ermöglicht sie effizienteres einfügen oder löschen, wenn die position bekannt ist.
 
-Array Szenaria:
+Array Szenari0:
 Wenn die Anzahl der Aufgaben im Vorraus bekannt is und sich selten/nicht ändert, wäre ein array sinnvoller. zb. Stundenplan für die Woche bei dem Termine fest sind und nur selten veränderung ist. 
 Ein array bracht weniger speicherplatz pro element weil es keine zusätzlichen pointer hat, daher ist ein array viel effizienter beim lesen/sortieren des arrays.
 
-Aufgabe 4:
+## Aufgabe 4:
+siehe .java file
