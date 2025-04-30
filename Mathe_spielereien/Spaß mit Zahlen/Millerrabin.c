@@ -43,13 +43,16 @@ bool Millerrabin(int number){
             arr[size - 1] = temp;
             temp = temp / 2;
         }
-        
-        
-        createList(number, &arr);
+
+        // Process the array (example: print its contents)
+        for (int i = 0; i < size; i++) {
+            printf("arr[%d] = %d\n", i, arr[i]);
+            
+        }
+
         free(arr);
         arr = NULL;
         int r = generate_random(1, 100);
-
 
     }
     else{

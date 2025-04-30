@@ -1,4 +1,4 @@
-from soduko_create import create_soduko, is_valid
+from Soduko.soduko_create import create_soduko, is_valid
 import numpy as np
 
 sudoku = create_soduko()
