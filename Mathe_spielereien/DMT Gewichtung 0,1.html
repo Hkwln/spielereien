@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- added viewport meta tag -->
+    <title>Download Slider Values</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            max-width: 800px; /* added to center the website */
+            margin: 20px auto; /* center horizontally */
+            color: #333;
+        }
+        /* Include sportartContainer with other containers */
+        #intro, #sportartContainer, #questionContainer, #sliderContainer, #message {
+            background: #fff;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            -webkit-box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        input[type="range"] {
+            width: 60%; /* reduced width */
+        }
+        /* Ensure proper slider alignment */
+        #sliderContainer label {
+            display: -webkit-flex;
+            display: flex;
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-justify-content: space-between;
+            justify-content: space-between;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        /* New styling for extra info textbox */
+        #textBoxContainer input {
+            font-size: 1.2em;
+            padding: 10px;
+            margin-top: 15px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        /* New styling for sportart textbox */
+        #sportartContainer input {
+            font-size: 1.2em;
+            padding: 10px;
+            margin-top: 15px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        /* Media query for mobile optimization */
+        @media (max-width: 600px) {
+            body {
+                margin: 10px auto;
+            }
+            input[type="range"] {
+                width: 80%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align:center;">Gewichtung DMT nach Sportart</h1> <!-- added title -->
+    <!-- Introduction placeholder -->
+    <div id="intro">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </div>
+    <!-- New sportart question -->
+    <div id="sportartContainer">
+        <p>Was ist deine Sportart?</p>
+        <input type="text" id="sportartInput" placeholder="Gib deine Sportart ein">
+    </div>
+    <!-- New yes/no question section -->
+    <div id="questionContainer">
+        <p>Hast du eine Trainerlizenz?</p>
+        <label><input type="radio" name="yesNo" value="yes"> Yes</label>
+        <label><input type="radio" name="yesNo" value="no" checked> No</label>
+        <div id="textBoxContainer" style="display:none;">
+            <input type="text" id="extraInfo" placeholder="Art der Trainerlizenz">
+        </div>
+    </div>
+    <div id="sliderContainer">
+        <label>20m-Sprint: <input type="range" id="slider1" min="0.5" max="1.5" value="1" step="0.1"></label><br>
+        <label>Balancieren rückwärts <input type="range" id="slider2" min="0.5" max="1.5" value="1" step="0.1"></label><br>
+        <label>Seitliches Hin- und Herspringen <input type="range" id="slider3" min="0.5" max="1.5" value="1" step="0.1"></label><br>
+        <label>Sit-ups <input type="range" id="slider4" min="0.5" max="1.5" value="1" step="0.1"></label><br>
+        <label>Liegestütze <input type="range" id="slider5" min="0.5" max="1.5" value="1" step="0.1"></label><br>
+        <label>Standweitsprung <input type="range" id="slider6" min="0.5" max="1.5" value="1" step="0.1"></label><br>
+        <label>Rumpfbeugen <input type="range" id="slider7" min="0.5" max="1.5" value="1" step="0.1"></label><br>
+        <label>6-Minuten-Lauf <input type="range" id="slider8" min="0.5" max="1.5" value="1" step="0.1"></label><br>
+    </div>
+    <!-- New message container -->
+    <div id="message"></div>
+    <br>
+    <button id="downloadBtn" style="background-color: red;">Download Slider Values</button>
+
+    <script>
+        // Toggle the extra text input based on the yes/no answer
+        document.getElementsByName('yesNo').forEach(function(radio) {
+            radio.addEventListener('change', function() {
+                document.getElementById('textBoxContainer').style.display = this.value === 'yes' ? 'block' : 'none';
+            });
+        });
+
+        // Function to update the button color and display a message based on slider sum
+        function updateButtonColor() {
+            let sum = 0;
+            for (let i = 1; i <= 8; i++) {
+                const slider = document.getElementById('slider' + i);
+                sum += parseFloat(slider.value);
+            }
+            const btn = document.getElementById("downloadBtn");
+            const msg = document.getElementById("message");
+            if(Math.abs(sum - 8) < 1e-9) {
+                btn.style.backgroundColor = "green";
+                msg.textContent = "Slider total is exactly 8.";
+            } else if(sum < 8) {
+                btn.style.backgroundColor = "red";
+                msg.textContent = "Slider total too low.";
+            } else {
+                btn.style.backgroundColor = "red";
+                msg.textContent = "Slider total too high.";
+            }
+        }
+        // Attach event listeners to each slider
+        for (let i = 1; i <= 8; i++) {
+            document.getElementById('slider' + i).addEventListener("input", updateButtonColor);
+        }
+        // Initial update
+        updateButtonColor();
+
+        // When the download button is pressed, download a CSV file with the answer and slider values
+        document.getElementById("downloadBtn").addEventListener("click", function() {
+            const answer = document.querySelector('input[name="yesNo"]:checked').value;
+            const extraInfo = document.getElementById("extraInfo").value;
+            const sportart = document.getElementById("sportartInput").value; // added sportart answer
+            const sliderNames = ["20m-Sprint", "Balancieren rückwärts", "Seitliches Hin- und Herspringen", "Sit-ups", "Liegestütze", "Standweitsprung", "Rumpfbeugen", "6-Minuten-Lauf"]; // added slider names
+            let csvContent = "Answer,Extra Info,Sportart\n";
+            csvContent += `${answer},${extraInfo},${sportart}\n\n`;
+            csvContent += "Slider,Value\n";
+            for (let i = 1; i <= 8; i++) {
+                const sliderValue = document.getElementById("slider" + i).value;
+                csvContent += `${sliderNames[i-1]},${sliderValue}\n`;
+            }
+            const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "download_document.csv";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        });
+    </script>
+</body>
+</html>
