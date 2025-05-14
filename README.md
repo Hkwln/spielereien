@@ -1,5 +1,5 @@
 # **Spielereien**
-#####sHere I have some fun experimenting with lots of difference things I just want to try:
+##### Here I have some fun experimenting with lots of difference things I just want to try:
 ### Mathe_Spielereien:
 * Here I tried to code some math in python, so I don't have to calculate it by hand
 ### Soduko:
