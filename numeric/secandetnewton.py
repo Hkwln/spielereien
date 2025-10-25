@@ -24,6 +24,17 @@ def secand(f, x0: int, x1: int, iterations: int = 5 ) -> float:
 
 #test:
 secand(f, 0, 1)
+def newton(f, x0:int, iterations:int = 5) -> float:
+    # the formular is x_n+1 = x_n- (f(x_n))/f'(x_n)
+    for i in range(iterations):
+        x0=x0-numpy.divide(f(x0), numpy.diff(f(x0)))
+        
+    print (f"the current approximation of the zero point is {x0}")
+
+
+#test
+newton(f,0)
+
 
 
 
